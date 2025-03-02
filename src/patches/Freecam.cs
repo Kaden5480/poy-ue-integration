@@ -34,7 +34,7 @@ namespace UEIntegration.Patches {
             MethodInfo setupFreeCamera = AccessTools.Method(freeCamPanel, "SetupFreeCamera");
             MethodInfo postfix = AccessTools.Method(typeof(FreecamDefaults), nameof(FreecamDefaults.Postfix));
 
-            harmony.Patch(setupFreeCamera, null, postfix, null);
+            harmony.Patch(setupFreeCamera, null, new HarmonyMethod(postfix), null);
             hasPatched = true;
         }
 
