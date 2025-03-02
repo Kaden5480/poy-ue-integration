@@ -48,6 +48,7 @@ namespace UEIntegration {
 
 #elif MELONLOADER
 using MelonLoader;
+using MelonLoader.Utils;
 
 [assembly: MelonInfo(typeof(UEIntegration.Plugin), "UEIntegration", PluginInfo.PLUGIN_VERSION, "Kaden5480")]
 [assembly: MelonGame("TraipseWare", "Peaks of Yore")]
