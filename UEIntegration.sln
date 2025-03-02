@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UEIntegration", "UEIntegration.csproj", "{E3392ECD-05E9-46E4-A221-1E69EB313206}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug-BepInEx|Any CPU = Debug-BepInEx|Any CPU
+		Release-BepInEx|Any CPU = Release-BepInEx|Any CPU
+		Debug-MelonLoader|Any CPU = Debug-MelonLoader|Any CPU
+		Release-MelonLoader|Any CPU = Release-MelonLoader|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Debug-BepInEx|Any CPU.ActiveCfg = Debug-BepInEx|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Debug-BepInEx|Any CPU.Build.0 = Debug-BepInEx|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Release-BepInEx|Any CPU.ActiveCfg = Release-BepInEx|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Release-BepInEx|Any CPU.Build.0 = Release-BepInEx|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Debug-MelonLoader|Any CPU.ActiveCfg = Debug-MelonLoader|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Debug-MelonLoader|Any CPU.Build.0 = Debug-MelonLoader|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Release-MelonLoader|Any CPU.ActiveCfg = Release-MelonLoader|Any CPU
+		{E3392ECD-05E9-46E4-A221-1E69EB313206}.Release-MelonLoader|Any CPU.Build.0 = Release-MelonLoader|Any CPU
+	EndGlobalSection
+EndGlobal
