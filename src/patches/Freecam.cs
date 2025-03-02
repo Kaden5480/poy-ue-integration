@@ -25,7 +25,7 @@ namespace UEIntegration.Patches {
 #elif MELONLOADER
         static bool hasPatched = false;
 
-        public static void Patch(Harmony.HarmonyInstance harmony) {
+        public static void Patch(HarmonyLib.Harmony harmony) {
             if (hasPatched == true) {
                 return;
             }
