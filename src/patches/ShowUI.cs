@@ -4,6 +4,14 @@ using UnityExplorer.UI;
 namespace UEIntegration.Patches {
     static class ShowUI {
         public static void Update() {
+            if (InGameMenu.isLoading == true
+                || EnterPeakScene.enteringPeakScene == true
+                || EnterPeakScene.enteringAlpScene == true
+                || EnterRoomSegmentScene.enteringScene == true
+            ) {
+                return;
+            }
+
             Cache cache = Plugin.instance.cache;
 
             bool showUI = UIManager.ShowMenu;
