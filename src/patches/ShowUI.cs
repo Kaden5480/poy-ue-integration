@@ -6,6 +6,18 @@ namespace UEIntegration.Patches {
     static class ShowUI {
         public static bool allowingMovement = true;
 
+        private static bool IsInMenu() {
+            Cache cache = Plugin.instance.cache;
+
+            if (cache.inGameMenu == null) {
+                return false;
+            }
+
+            return cache.inGameMenu.isMainMenu == true
+                || cache.inGameMenu.inMenu == true
+                || InGameMenu.isCurrentlyNavigationMenu == true;
+        }
+
         private static void AllowMovement(bool allow) {
             allowingMovement = allow;
 
@@ -34,13 +46,13 @@ namespace UEIntegration.Patches {
             // Toggle movement in very specific cases
             if (showUI == true) {
                 AllowMovement(false);
-            }
-            else if (allowingMovement == false && showUI == false) {
-                AllowMovement(true);
-            }
-
-            if (showUI == true) {
                 InGameMenu.hasBeenInMenu = true;
+            }
+            else if (allowingMovement == false
+                && showUI == false
+                && IsInMenu() == false
+            ) {
+                AllowMovement(true);
             }
         }
     }
