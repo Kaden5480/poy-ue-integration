@@ -22,6 +22,13 @@ namespace UEIntegration {
                 "The default field of view for the freecam"
             );
 
+            Harmony.CreateAndPatchAll(typeof(Patches.DisableLeavePeakScene));
+
+            Harmony.CreateAndPatchAll(typeof(Patches.DisableCrampons));
+            Harmony.CreateAndPatchAll(typeof(Patches.DisableInventory));
+            Harmony.CreateAndPatchAll(typeof(Patches.DisableRope));
+            Harmony.CreateAndPatchAll(typeof(Patches.DisableRoutingFlag));
+
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
 

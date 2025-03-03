@@ -4,7 +4,7 @@ using UnityExplorer.UI;
 
 namespace UEIntegration.Patches {
     static class ShowUI {
-        private static bool allowingMovement = true;
+        public static bool allowingMovement = true;
 
         private static void AllowMovement(bool allow) {
             allowingMovement = allow;
