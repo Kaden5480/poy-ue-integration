@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityExplorer.Config;
 using UnityExplorer.UI;
 
 namespace UEIntegration.Patches {
