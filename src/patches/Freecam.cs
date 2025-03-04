@@ -32,8 +32,17 @@ namespace UEIntegration.Patches {
 
 #endif
 
-        static void Postfix() {
+        static void Prefix(ref Camera __state) {
+            __state = (Camera) AccessTools.Field(freeCamPanel, "ourCamera")
+                .GetValue(null);
+        }
+
+        static void Postfix(Camera __state) {
             Config.Freecam config = Plugin.instance.config.freecam;
+
+            if (__state != null && config.alwaysReapply.Value == false) {
+                return;
+            }
 
             Camera camera = (Camera) AccessTools.Field(freeCamPanel, "ourCamera")
                 .GetValue(null);

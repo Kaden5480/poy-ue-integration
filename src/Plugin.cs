@@ -21,6 +21,10 @@ namespace UEIntegration {
                 "Freecam", "fieldOfView", defaultFieldOfView,
                 "The default field of view for the freecam"
             );
+            config.freecam.alwaysReapply = Config.Bind(
+                "Freecam", "alwaysReapply", false,
+                "Whether to always reapply freecam customizations when entering freecam"
+            );
 
             Harmony.CreateAndPatchAll(typeof(Patches.DisableLeavePeakScene));
 
@@ -69,6 +73,7 @@ namespace UEIntegration {
 
             config.freecam.farClipPlane = freecam.CreateEntry<float>("farClipPlane", defaultFarClipPlane);
             config.freecam.fieldOfView = freecam.CreateEntry<float>("fieldOfView", defaultFieldOfView);
+            config.freecam.alwaysReapply = freecam.CreateEntry<bool>("alwaysReapply", false);
 
             CommonAwake();
         }
