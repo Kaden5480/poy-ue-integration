@@ -3,7 +3,6 @@ using System.Reflection;
 
 using HarmonyLib;
 using UnityEngine;
-using UnityExplorer.UI.Panels;
 
 #if MELONLOADER
 using MelonLoader;
@@ -23,19 +22,12 @@ namespace UEIntegration.Patches {
         }
 
 #elif MELONLOADER
-        static bool hasPatched = false;
-
         public static void Patch(HarmonyLib.Harmony harmony) {
-            if (hasPatched == true) {
-                return;
-            }
-
             freeCamPanel = AccessTools.TypeByName("UnityExplorer.UI.Panels.FreeCamPanel");
             MethodInfo setupFreeCamera = AccessTools.Method(freeCamPanel, "SetupFreeCamera");
             MethodInfo postfix = AccessTools.Method(typeof(FreecamDefaults), nameof(FreecamDefaults.Postfix));
 
             harmony.Patch(setupFreeCamera, null, new HarmonyMethod(postfix), null);
-            hasPatched = true;
         }
 
 #endif

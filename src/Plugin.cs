@@ -45,7 +45,7 @@ namespace UEIntegration {
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-            Harmony.CreateAndPatchAll(typeof(Patches.FreecamDefaults));
+            patcher.Patch();
             CommonSceneLoad();
         }
 
@@ -78,7 +78,7 @@ namespace UEIntegration {
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName) {
-            Patches.FreecamDefaults.Patch(this.HarmonyInstance);
+            patcher.Patch();
             CommonSceneLoad();
         }
 
@@ -90,6 +90,8 @@ namespace UEIntegration {
         public static Plugin instance;
         public Config.Cfg config;
         public Cache cache { get; } = new Cache();
+
+        private Patches.Patcher patcher = new Patches.Patcher();
 
         private const float defaultFarClipPlane = 1000f;
         private const float defaultFieldOfView = 60f;
