@@ -4,7 +4,7 @@
     <Platform>Any CPU</Platform>
     <AssemblyName>UEIntegration</AssemblyName>
     <Description>A Peaks of Yore mod which provides better integration with Unity Explorer</Description>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <Configurations>Debug-BepInEx;Release-BepInEx;Debug-MelonLoader;Release-MelonLoader</Configurations>
     <Configuration Condition="'$(Configuration)' == ''">Debug-BepInEx</Configuration>
@@ -64,6 +64,9 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp.dll">
       <HintPath>$(GameLibPath)/Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime.dll">
+      <HintPath>$(GameLibPath)/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
 

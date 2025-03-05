@@ -25,6 +25,10 @@ namespace UEIntegration {
                 "Freecam", "alwaysReapply", false,
                 "Whether to always reapply freecam customizations when entering freecam"
             );
+            config.freecam.copyPostProcessing = Config.Bind(
+                "Freecam", "copyPostProcessing", false,
+                "Whether to copy post processing to freecam"
+            );
 
             Harmony.CreateAndPatchAll(typeof(Patches.DisableLeavePeakScene));
 
@@ -74,6 +78,7 @@ namespace UEIntegration {
             config.freecam.farClipPlane = freecam.CreateEntry<float>("farClipPlane", defaultFarClipPlane);
             config.freecam.fieldOfView = freecam.CreateEntry<float>("fieldOfView", defaultFieldOfView);
             config.freecam.alwaysReapply = freecam.CreateEntry<bool>("alwaysReapply", false);
+            config.freecam.copyPostProcessing = freecam.CreateEntry<bool>("copyPostProcessing", false);
 
             CommonAwake();
         }
