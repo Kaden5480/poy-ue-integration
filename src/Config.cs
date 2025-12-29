@@ -28,22 +28,22 @@ namespace UEIntegration {
          * <param name="configFile">The config file to bind to</param>
          */
         internal static void Init(ConfigFile configFile) {
-            fov = Config.Bind(
+            fov = configFile.Bind(
                 "Freecam", "fov", 100f,
                 "The default field of view for the freecam."
             );
 
-            farClipPlane = Config.Bind(
+            farClipPlane = configFile.Bind(
                 "Freecam", "farClipPlane", 100000f,
                 "The default far clip plane for the freecam."
             );
 
-            alwaysReapply = Config.Bind(
+            alwaysReapply = configFile.Bind(
                 "Freecam", "alwaysReapply", true,
                 "Whether to always reapply freecam customisations when entering freecam."
             );
 
-            usePostProcess = Config.Bind(
+            usePostProcess = configFile.Bind(
                 "Freecam", "usePostProcess", true,
                 "Whether to use post processing on the freecam."
             );

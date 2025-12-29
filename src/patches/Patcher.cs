@@ -1,3 +1,5 @@
+using HarmonyLib;
+
 namespace UEIntegration.Patches {
     /**
      * <summary>
@@ -21,6 +23,15 @@ namespace UEIntegration.Patches {
 
             Harmony.CreateAndPatchAll(typeof(FreecamDefaults));
             hasPatched = true;
+        }
+
+        /**
+         * <summary>
+         * Runs patches that need to run each frame.
+         * </summary>
+         */
+        internal static void Update() {
+            UICheck.Update();
         }
     }
 }

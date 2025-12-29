@@ -1,6 +1,9 @@
 using BepInEx;
 using HarmonyLib;
 using ModMenu;
+using UILib.Patches;
+
+using UEIntegration.Patches;
 
 namespace UEIntegration {
     [BepInPlugin("com.github.Kaden5480.poy-ue-integration", "UE Integration", PluginInfo.PLUGIN_VERSION)]
@@ -11,15 +14,13 @@ namespace UEIntegration {
          * </summary>
          */
         public void Awake() {
-            instance = this;
-
             // Initialize config
             UEIntegration.Config.Init(this.Config);
 
             // Add listeners for scene loads/unloads
             SceneLoads.AddLoadListener(delegate {
                 Cache.FindObjects();
-                Patches.Patcher.PatchLate();
+                Patcher.PatchLate();
             });
 
             SceneLoads.AddUnloadListener(delegate {
@@ -30,5 +31,16 @@ namespace UEIntegration {
             ModInfo info = ModManager.Register(this);
             info.Add(typeof(UEIntegration.Config));
         }
+
+        /**
+         * <summary>
+         * Determines whether to pause the game by
+         * checking if Unity Explorer's UI is open.
+         * </summary>
+         */
+        private void Update() {
+            Patcher.Update();
+        }
+
     }
 }

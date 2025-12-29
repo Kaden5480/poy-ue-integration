@@ -61,6 +61,12 @@
     <Reference Include="UILib.dll">
       <HintPath>$(PluginOutputPath)/UILib.dll</HintPath>
     </Reference>
+    <Reference Include="UnityExplorer.BIE5.Mono.dll">
+      <HintPath>$(PluginOutputPath)/UnityExplorer.BIE5.Mono.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime.dll">
+      <HintPath>$(GameLibPath)/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <Target Name="CopyPackageAssembliesToSubFolder" AfterTargets="ResolveReferences">

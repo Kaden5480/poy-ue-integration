@@ -32,7 +32,7 @@ namespace UEIntegration.Patches {
          */
         private static void ApplyPostProcessing(Camera camera) {
             if (Cache.playerCamera == null) {
-                Plugin.LogDebug("Unable to apply post processing, player camera not found in scene");
+                return;
             }
 
             // Copy camera settings
