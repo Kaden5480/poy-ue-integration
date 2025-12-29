@@ -1,21 +1,40 @@
 using UnityEngine;
 
 namespace UEIntegration {
-    public class Cache {
-        public InGameMenu inGameMenu;
-        public PlayerManager playerManager;
-        public PeakSummited peakSummited;
+    /**
+     * <summary>
+     * Caches useful objects on scene loads.
+     * </summary>
+     */
+    internal static class Cache {
+        internal static Camera playerCamera { get; private set; }
 
-        public void OnSceneLoaded() {
-            inGameMenu = GameObject.FindObjectOfType<InGameMenu>();
-            playerManager = GameObject.FindObjectOfType<PlayerManager>();
-            peakSummited = GameObject.FindObjectOfType<PeakSummited>();
+        /**
+         * <summary>
+         * Finds objects on scene loads.
+         * </summary>
+         */
+        internal static void FindObjects() {
+            // Find the main camera through an audio listener
+            foreach (AudioListener listener in GameObject.FindObjectsOfType<AudioListener>()) {
+                if ("CamY".Equals(listener.name) == false
+                    && "MainCamera".Equals(listener.name) == false
+                ) {
+                    continue;
+                }
+
+                playerCamera = listener.GetComponent<Camera>();
+                break;
+            }
         }
 
-        public void OnSceneUnloaded() {
-            inGameMenu = null;
-            playerManager = null;
-            peakSummited = null;
+        /**
+         * <summary>
+         * Clears the cache on scene unloads.
+         * </summary>
+         */
+        internal static void Clear() {
+            playerCamera = null;
         }
     }
 }
