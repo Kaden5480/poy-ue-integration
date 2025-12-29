@@ -8,12 +8,12 @@ using UILib.Patches;
 using UEIntegration.Patches;
 
 namespace UEIntegration {
-    [BepInPlugin("com.github.Kaden5480.poy-ue-integration", "UE Integration", PluginInfo.PLUGIN_VERSION)]
     [BepInDependency("com.github.Kaden5480.poy-ui-lib")]
     [BepInDependency(
         "com.github.Kaden5480.poy-mod-menu",
         BepInDependency.DependencyFlags.SoftDependency
     )]
+    [BepInPlugin("com.github.Kaden5480.poy-ue-integration", "UE Integration", PluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin {
         /**
          * <summary>
