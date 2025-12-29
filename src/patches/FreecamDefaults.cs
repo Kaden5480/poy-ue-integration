@@ -15,6 +15,9 @@ namespace UEIntegration.Patches {
     internal static class FreecamDefaults {
         private static Type freeCamPanel;
 
+        private static Camera camera;
+        private static PostProcessLayer ourPostProcess;
+
         /**
          * <summary>
          * Finds the method to patch at runtime.
@@ -27,10 +30,40 @@ namespace UEIntegration.Patches {
 
         /**
          * <summary>
-         * Applies post processing to the freecam.
+         * Updates other camera settings.
          * </summary>
          */
-        private static void ApplyPostProcessing(Camera camera) {
+        internal static void UpdateCamera(float _) {
+            if (camera == null) {
+                return;
+            }
+
+            camera.fieldOfView = Config.fov.Value;
+            camera.farClipPlane = Config.farClipPlane.Value;
+        }
+
+        /**
+         * <summary>
+         * Updates the enabled state of post processing.
+         * </summary>
+         * <param name="enabled">Whether post processing should be enabled</param>
+         */
+        internal static void UpdatePostProcess(bool enabled) {
+            if (ourPostProcess == null) {
+                return;
+            }
+
+            ourPostProcess.enabled = enabled;
+        }
+
+
+        /**
+         * <summary>
+         * Applies post processing to the freecam.
+         * </summary>
+         * <param name="camera">The camera to add post processing to</param>
+         */
+        private static void AddPostProcessing(Camera camera) {
             if (Cache.playerCamera == null) {
                 return;
             }
@@ -42,7 +75,7 @@ namespace UEIntegration.Patches {
             PostProcessLayer playerPostProcess = Cache.playerCamera.GetComponent<PostProcessLayer>();
             if (playerPostProcess == null) { return; }
 
-            PostProcessLayer ourPostProcess = camera.GetComponent<PostProcessLayer>();
+            ourPostProcess = camera.GetComponent<PostProcessLayer>();
             if (ourPostProcess == null) {
                 ourPostProcess = camera.gameObject.AddComponent<PostProcessLayer>();
             }
@@ -79,13 +112,12 @@ namespace UEIntegration.Patches {
          * </summary>
          */
         private static void Postfix(Camera __state) {
-            Camera camera = (Camera) AccessTools.Field(freeCamPanel, "ourCamera")
+            camera = (Camera) AccessTools.Field(freeCamPanel, "ourCamera")
                 .GetValue(null);
 
             // Use post processing
-            if (Config.usePostProcess.Value == true) {
-                ApplyPostProcessing(camera);
-            }
+            AddPostProcessing(camera);
+            UpdatePostProcess(Config.usePostProcess.Value);
 
             // The same camera was re-used, but settings shouldn't reapply
             if (__state != null && Config.alwaysReapply.Value == false) {

@@ -13,12 +13,17 @@ namespace UEIntegration {
          */
         internal static void Update() {
             // Create a lock
-            if (UIManager.ShowMenu == true && @lock == null) {
+            if (Config.pauseGame.Value == true
+                && UIManager.ShowMenu == true
+                && @lock == null
+            ) {
                 @lock = new Lock();
             }
 
             // Close the lock
-            if (UIManager.ShowMenu == false && @lock != null) {
+            if ((Config.pauseGame.Value == false || UIManager.ShowMenu == false)
+                && @lock != null
+            ) {
                 @lock.Close();
                 @lock = null;
             }
