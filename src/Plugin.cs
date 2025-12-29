@@ -1,3 +1,5 @@
+using System.Linq;
+
 using BepInEx;
 using HarmonyLib;
 using ModMenu;
@@ -7,6 +9,11 @@ using UEIntegration.Patches;
 
 namespace UEIntegration {
     [BepInPlugin("com.github.Kaden5480.poy-ue-integration", "UE Integration", PluginInfo.PLUGIN_VERSION)]
+    [BepInDependency("com.github.Kaden5480.poy-ui-lib")]
+    [BepInDependency(
+        "com.github.Kaden5480.poy-mod-menu",
+        BepInDependency.DependencyFlags.SoftDependency
+    )]
     public class Plugin : BaseUnityPlugin {
         /**
          * <summary>
@@ -27,7 +34,21 @@ namespace UEIntegration {
                 Cache.Clear();
             });
 
-            // Register with mod menu
+            // Register with Mod Menu as an optional dependency
+            if (AccessTools.AllAssemblies().FirstOrDefault(
+                    a => a.GetName().Name == "ModMenu"
+                ) != null
+            ) {
+                Register();
+            }
+        }
+
+        /**
+         * <summary>
+         * Registers with Mod Menu.
+         * </summary>
+         */
+        private void Register() {
             ModInfo info = ModManager.Register(this);
             info.Add(typeof(UEIntegration.Config));
         }
