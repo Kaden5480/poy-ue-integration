@@ -5,33 +5,15 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-#if MELONLOADER
-using MelonLoader;
-#endif
-
 namespace UEIntegration.Patches {
-#if BEPINEX
     [HarmonyPatch]
-#endif
     static class FreecamDefaults {
         private static Type freeCamPanel;
 
-#if BEPINEX
         static MethodBase TargetMethod() {
             freeCamPanel = AccessTools.TypeByName("UnityExplorer.UI.Panels.FreeCamPanel");
             return AccessTools.Method(freeCamPanel, "SetupFreeCamera");
         }
-
-#elif MELONLOADER
-        public static void Patch(HarmonyLib.Harmony harmony) {
-            freeCamPanel = AccessTools.TypeByName("UnityExplorer.UI.Panels.FreeCamPanel");
-            MethodInfo setupFreeCamera = AccessTools.Method(freeCamPanel, "SetupFreeCamera");
-            MethodInfo postfix = AccessTools.Method(typeof(FreecamDefaults), nameof(FreecamDefaults.Postfix));
-
-            harmony.Patch(setupFreeCamera, null, new HarmonyMethod(postfix), null);
-        }
-
-#endif
 
         private static void ApplyPostProcessing(Camera camera) {
             // Get the normal camera

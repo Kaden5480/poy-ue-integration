@@ -9,13 +9,7 @@ namespace UEIntegration.Patches {
                 return;
             }
 
-#if BEPINEX
             Harmony.CreateAndPatchAll(typeof(Patches.FreecamDefaults));
-#elif MELONLOADER
-            Patches.FreecamDefaults.Patch(Plugin.instance.HarmonyInstance);
-#endif
-
-            hasPatched = true;
         }
     }
 }
