@@ -28,6 +28,31 @@ namespace UEIntegration {
         [Field("Use Post Processing")]
         internal static ConfigEntry<bool> usePostProcess { get; private set; }
 
+        // Panels
+        [Field("Object Explorer")]
+        internal static ConfigEntry<bool> showObjectExplorer { get; private set; }
+
+        [Field("Inspector")]
+        internal static ConfigEntry<bool> showInspector { get; private set; }
+
+        [Field("C# Console")]
+        internal static ConfigEntry<bool> showConsole { get; private set; }
+
+        [Field("Hooks")]
+        internal static ConfigEntry<bool> showHooks { get; private set; }
+
+        [Field("Freecam")]
+        internal static ConfigEntry<bool> showFreecam { get; private set; }
+
+        [Field("Clipboard")]
+        internal static ConfigEntry<bool> showClipboard { get; private set; }
+
+        [Field("Log")]
+        internal static ConfigEntry<bool> showLog { get; private set; }
+
+        [Field("Options")]
+        internal static ConfigEntry<bool> showOptions { get; private set; }
+
         /**
          * <summary>
          * Initializes the config by binding to the
@@ -61,6 +86,47 @@ namespace UEIntegration {
             usePostProcess = configFile.Bind(
                 "Freecam", "usePostProcess", true,
                 "Whether to use post processing on the freecam."
+            );
+
+            // Panels
+            showObjectExplorer = configFile.Bind(
+                "Panels", "showObjectExplorer", false,
+                "Whether to show the object explorer panel by default."
+            );
+
+            showInspector = configFile.Bind(
+                "Panels", "showInspector", false,
+                "Whether to show the inspector panel by default."
+            );
+
+            showConsole = configFile.Bind(
+                "Panels", "showConsole", false,
+                "Whether to show the console panel by default."
+            );
+
+            showHooks = configFile.Bind(
+                "Panels", "showHooks", false,
+                "Whether to show the hooks panel by default."
+            );
+
+            showFreecam = configFile.Bind(
+                "Panels", "showFreecam", false,
+                "Whether to show the freecam panel by default."
+            );
+
+            showClipboard = configFile.Bind(
+                "Panels", "showClipboard", false,
+                "Whether to show the clipboard panel by default."
+            );
+
+            showLog = configFile.Bind(
+                "Panels", "showLog", false,
+                "Whether to show the log panel by default."
+            );
+
+            showOptions = configFile.Bind(
+                "Panels", "showOptions", false,
+                "Whether to show the options panel by default."
             );
         }
     }
